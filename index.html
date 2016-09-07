@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style-type: none;
+        }
+        .news{
+            width:200px;
+            border: 1px solid #000;
+            margin:100px auto;
+            text-align: center;
+        }
+        .list{
+            font:400 14px/26px 'microsoft yahei';
+            text-align: center;
+        }
+        .list li{
+            border-bottom:solid 1px #f92873;
+        }
+    </style>
+    <script src="./jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<!--需求：点击“加载更多”的按钮，实现每次加载三个新闻列表，直到全部加载完，最后显示“没有了”-->
+    <div class="news">
+        <ul class="list">
+        </ul>
+        <button class="myBtn">点击加载更多</button>
+    </div>
+<script>
+    $(function(){
+        $('.myBtn').click(function(){
+            var ajaxHtml='';
+            var list = $('.list');
+            $.ajax({
+                url: 'data.json',
+                type: 'get',
+                dataType: 'json'
+            })
+            .done(function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    ajaxHtml+='<li><span>'+data[i].author+'</span>'+data[i].con+'</li>';
+                };
+                list.append(ajaxHtml);
+            })
+            .fail(function() {
+                console.log("error");
+            })
+        });
+    })
+</script>
+</body>
+</html>

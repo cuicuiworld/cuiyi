@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>前台实现边注册边验证</title>
+    </head>
+    <body>
+    	<form method="post" action="" >
+            姓名：<input id="name" type="text" name="name"  onblur="judge('n');"/><br>
+            手机：<input name="phone"  id="phone" type="text" size="15" onblur="judge('p');" /><br>
+            QQ：<input name="qq" id="qq" type="text" size="15" onblur="judge('q')"/><br>
+	        <input type="radio" name="way" value="接收手机短息"  checked="true" /><br>
+	        <input type="radio" name="way" /><br>
+	        留言：<textarea name="msg"></textarea><br>
+	        <input type="submit" id="tj" onclick="judge('n')" value="提交"  class="action" value=""/><br>
+        </form>
+        <p id="put"></p>
+
+        <!--  -->
+        <script language="javascript">
+		    function judge(x){
+		        if(x=="n"){
+		            var n=document.getElementById("name").value;
+		            if(n==""){
+		                document.getElementById("put").innerHTML="提示信息：<span style='colo=#F00'>请填写您的姓名！</span>";
+		                document.getElementById("tj").disabled=true;
+	                }
+	                else{
+		                document.getElementById("put").innerHTML="";
+		                document.getElementById("tj").disabled=false;
+	                }
+		        }
+		        else if(x=="p"){
+	                var p=document.getElementById("phone").value;
+	                if(p==""){
+		                document.getElementById("put").innerHTML="提示信息：<span style='colo=#F00'>请填写您的手机号码！</span>";
+		                document.getElementById("tj").disabled=true;
+	                }
+	                else if(p.length!=11){
+		                document.getElementById("put").innerHTML="提示信息：<span style='colo=#F00'>请填您正确的联系方式，以便我们联系您！</span>";
+		                document.getElementById("tj").disabled=true;
+	                }
+	                else{
+		                document.getElementById("put").innerHTML="";
+		                document.getElementById("tj").disabled=false;
+	                }
+		        }
+		        else if(x=="q"){
+	                var q=document.getElementById("qq").value;
+	                if(q==""){
+		                    document.getElementById("put").innerHTML="提示信息：<span style='colo=#F00'>请填写您的常用qq！</span>";
+		                    document.getElementById("tj").disabled=true;
+	                    }
+	                    else if(isNaN(q)){
+		                    document.getElementById("put").innerHTML="提示信息：<span style='colo=#F00'>请填写您正确的常用qq，以便我们联系您！</span>";
+		                    document.getElementById("tj").disabled=true;
+	                    }
+	                    else{
+		                    document.getElementById("put").innerHTML="";
+		                    document.getElementById("tj").disabled=false;
+	                    }
+	                 
+	                }
+		        }
+		</script>
+    </body>
+</html>

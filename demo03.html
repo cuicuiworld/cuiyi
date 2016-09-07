@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="myBtn">点击加载更多</button>
+<script src="jquery-1.11.1.min.js"></script>
+<script>
+    $(function(){
+        $('#myBtn').click(function(){
+            $.ajax({
+                url:'',
+                data: {},
+                dataType: 'json', //服务器返回json格式数据
+                type: 'get', //HTTP请求类型
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                // data:JSON.stringify({'data.json'：1001}),
+                timeout: 60000, //超时时间设置为30秒；
+                success: function(data) {
+                    // var result = JSON.stringify(data);
+                    alert(data);
+                    //var code =
+                    if(data.ErrorCode == "0") {
+                        //数据处理
+                    } else {
+                        alert("加载数据失败");
+                    }
+                },
+                error: function(xhr, type, errorThrown) {
+                    alert("请求失败");
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
